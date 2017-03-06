@@ -15,36 +15,58 @@ int main(int argc, char* argv[]) {
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	SDL_Surface* todd_surface;
+	SDL_Texture* todd_texture;
+	SDL_Rect rectangle{ 160, 120, 320, 240 };	
 
-
+	
 	SDL_CreateWindowAndRenderer(640, 480, SDL_WINDOW_RESIZABLE, &window, &renderer); //SCREEN SIZE
+
+	todd_surface = SDL_LoadBMP("Todd.bmp");
+	todd_texture = SDL_CreateTextureFromSurface(renderer, todd_surface);
 
 	bool quit = false;
 
 	while(quit == false) //SCREEN COLORS AND RECTANGLE
 	{
-		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-		SDL_RenderClear(renderer);
+		SDL_Event event;
 
-		SDL_Rect rectangle{ 160, 120, 320, 240 };
-		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-		SDL_RenderDrawRect(renderer, &rectangle);
 
-		SDL_RenderFillRect(renderer, &rectangle);
-		SDL_RenderPresent(renderer);
-
-		SDL_Event event; 
-
-		while (SDL_PollEvent(&event)) //QUIT WHEN HIT ESCAPE
+		while (SDL_PollEvent(&event)) 
 		{
+			SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+			SDL_RenderClear(renderer);
+			SDL_RenderCopy(renderer, todd_texture, NULL, NULL);
+			SDL_RenderCopy(renderer, todd_texture, NULL, &rectangle);
+			SDL_RenderPresent(renderer);
+			
 
-			if (event.key.keysym.sym == SDLK_ESCAPE) {
-				quit = true;
+			switch (event.type) {
+				case SDL_KEYDOWN:
+
+					switch (event.key.keysym.sym) {
+						case (SDLK_ESCAPE): //QUIT WHEN HIT ESCAPE
+							quit = true;
+							break;
+						case(SDLK_w):
+							--rectangle.y;
+							break;
+						case(SDLK_s):
+							++rectangle.y;
+							break;
+						case(SDLK_a):
+							--rectangle.x;
+							break;
+						case(SDLK_d):
+							++rectangle.x;
+							break;
+
+				}
+				break;
 			}
-
 		}
 	}
-
+	
 
 	SDL_Quit();
 
