@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
 	SDL_CreateWindowAndRenderer(640, 480, SDL_WINDOW_RESIZABLE, &window, &renderer); //SCREEN SIZE
 
-	////////////////////////////TEXTURES AND SURFACES////////////////////////////
+	//////////////////////TEXTURES AND SURFACES///////////////////////
 	todd_surface = SDL_LoadBMP("Todd.bmp");
 //	standby_surface = SDL_LoadBMP("standby.bmp");
 	bullshit_surface = SDL_LoadBMP("bullshit.bmp");
@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
 				break;		
 			}
 		}
-		/////////////////Movement
+		/////////////////Movement////////////////
 		SDL_RenderPresent(renderer);
 		SDL_Delay(3);
 		
