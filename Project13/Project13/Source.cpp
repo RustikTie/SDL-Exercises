@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	SDL_Surface* todd_surface;
+	SDL_Surface* 
 	SDL_Texture* todd_texture;
 	SDL_Rect rectangle{ 196, 81, 247, 317 };	
 
@@ -24,7 +25,7 @@ int main(int argc, char* argv[]) {
 
 	todd_surface = SDL_LoadBMP("Todd.bmp");
 	todd_texture = SDL_CreateTextureFromSurface(renderer, todd_surface);
-
+	SDL_FreeSurface(todd_surface);
 	bool quit = false;
 
 	while(quit == false) //SCREEN COLORS AND RECTANGLE
@@ -46,28 +47,16 @@ int main(int argc, char* argv[]) {
 							quit = true;
 							break;
 						case(SDLK_w):
-							--rectangle.y;
-							if (rectangle.y < -398) {
-								rectangle.y = 438;
-							}
+							--rectangle.y;							
 							break;
 						case(SDLK_s):
-							++rectangle.y;
-							if (rectangle.y > 397) {
-								rectangle.y = -637;
-							}
+							++rectangle.y;						
 							break;
 						case(SDLK_a):
-							--rectangle.x;
-							if (rectangle.x < -443) {
-								rectangle.x = 640;
-							}
+							--rectangle.x;					
 							break;
 						case(SDLK_d):
 							++rectangle.x;
-							if (rectangle.x > -443) {
-								rectangle.x = -246;
-							}
 							break;
 
 				}
@@ -77,10 +66,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	SDL_DestroyTexture(todd_texture);
-	SDL_FreeSurface(todd_surface);
 	SDL_DestroyRenderer(renderer);
-	SDL_DestroyTexture(todd_texture);
-	SDL_FreeSurface(todd_surface);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 
