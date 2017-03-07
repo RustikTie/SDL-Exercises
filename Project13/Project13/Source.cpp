@@ -4,7 +4,7 @@
 
 #pragma comment(lib, "SDL/lib.x86/SDL2.lib")
 #pragma comment(lib, "SDL/lib.x86/SDL2main.lib")
-#define MAX_BULLETS 2
+#define MAX_BULLETS 10
 #define MAX_BACKGROUND 2
 
 
@@ -28,6 +28,12 @@ int main(int argc, char* argv[]) {
 	SDL_Rect background_1 = { 0 ,0, 1024, 512};
 	SDL_Rect background_2 = { 1024, 0, 1024, 512 };
 	SDL_Rect bullet[MAX_BULLETS]; // = { -58, -19, 58, 19 };	
+	for (int i = 0; i < MAX_BULLETS; ++i) {
+		bullet[i].x = -58;
+		bullet[i].y = -19;
+		bullet[i].w = 58;
+		bullet[i].h = 19;
+	}	
 
 	SDL_CreateWindowAndRenderer(640, 480, SDL_WINDOW_RESIZABLE, &window, &renderer); //SCREEN SIZE
 
