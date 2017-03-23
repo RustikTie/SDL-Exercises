@@ -3,6 +3,9 @@
 
 #include "Module.h"
 #include "SDL\include\SDL_rect.h"
+#include "ModuleSceneHonda.h"
+#include "ModuleSceneKen.h"
+#include "ModuleInput.h"
 
 class ModuleFadeToBlack : public Module
 {

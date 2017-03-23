@@ -4,6 +4,10 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "ModulePlayer.h"
+#include "ModuleInput.h"
+#include "ModuleSceneHonda.h"
+#include "ModuleFadeToBlack.h"
 
 struct SDL_Texture;
 
@@ -28,6 +32,8 @@ public:
 
 	float foreground_pos;
 	bool forward;
+	bool fading;
+
 };
 
 #endif // __MODULESCENEKEN_H__

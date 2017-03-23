@@ -4,6 +4,12 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "Application.h"
+#include "ModulePlayer.h"
+#include "ModuleInput.h"
+#include "ModuleSceneKen.h"
+#include "ModuleFadeToBlack.h"
+
 
 struct SDL_Texture;
 
@@ -25,6 +31,7 @@ public:
 	SDL_Rect foreground;
 	SDL_Rect background;
 	Animation water;
+	bool fading;
 };
 
 #endif // __MODULESCENEHONDA_H__

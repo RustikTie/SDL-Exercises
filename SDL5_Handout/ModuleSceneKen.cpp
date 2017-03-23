@@ -54,6 +54,15 @@ bool ModuleSceneKen::Start()
 	graphics = App->textures->Load("ken_stage.png");
 
 	// TODO 1: Enable (and properly disable) the player module
+	if (App->scene_ken->IsEnabled() == true) {
+		App->player->Enable();
+	}
+	else {
+		App->player->Disable();
+	}
+
+	
+	
 
 	return true;
 }
@@ -90,6 +99,16 @@ update_status ModuleSceneKen::Update()
 	App->render->Blit(graphics, 0, 170, &ground);
 
 	// TODO 3: make so pressing SPACE the HONDA stage is loaded
+	
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 && fading == false) {
+		App->fade->FadeToBlack(this, App->scene_honda, 2.0f);
+		fading = true;
+	}
+		
+			
+
+
 
 	return UPDATE_CONTINUE;
 }
