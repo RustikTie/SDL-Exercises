@@ -71,6 +71,7 @@ bool ModuleSceneKen::Start()
 bool ModuleSceneKen::CleanUp()
 {
 	LOG("Unloading ken scene");
+	App->textures->Unload(graphics);
 
 	return true;
 }

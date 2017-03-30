@@ -4,7 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
-
+#include "ModuleInput.h"
 #include "SDL/include/SDL_timer.h"
 
 ModuleParticles::ModuleParticles()
@@ -33,6 +33,13 @@ bool ModuleParticles::Start()
 	explosion.anim.speed = 0.3f;
 
 	// TODO 2: Create the template for a new particle "laser"
+
+	laser.anim.PushBack({ 200, 120, 32, 12 });
+	laser.anim.PushBack({ 233, 120, 32, 12 });
+	laser.anim.loop = true;
+	laser.anim.speed = 0.3f;
+	laser.life = 2500;
+	laser.speed.x = 5;
 
 	return true;
 }

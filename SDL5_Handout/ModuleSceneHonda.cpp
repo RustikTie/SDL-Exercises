@@ -53,6 +53,7 @@ bool ModuleSceneHonda::CleanUp()
 {
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading honda stage");
+	App->textures->Unload(graphics);
 
 	return true;
 }

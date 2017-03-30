@@ -99,6 +99,11 @@ update_status ModulePlayer::Update()
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 25, 1000);
 		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y, 1500);
 	}
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	{
+		App->particles->AddParticle(App->particles->laser, position.x + 30, position.y);	
+
+	}
 
 	if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 	   && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)

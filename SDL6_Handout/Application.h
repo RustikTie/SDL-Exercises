@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 8
+#define NUM_MODULES 9
 
 class ModuleWindow;
 class ModuleInput;
@@ -14,6 +14,7 @@ class ModuleSceneSpace;
 class ModulePlayer;
 class ModuleFadeToBlack;
 class Module;
+class ModuleSceneIntro;
 
 // TODO 1: Create an intro scene with rtype/intro.png that then fades to ModuleSpaceScene
 
@@ -30,6 +31,7 @@ public:
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
+	ModuleSceneIntro* scene_intro;
 
 public:
 
