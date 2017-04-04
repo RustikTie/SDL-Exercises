@@ -7,6 +7,7 @@
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
+#include "ModuleSceneSpace.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -42,6 +43,8 @@ bool ModulePlayer::Start()
 	position.y = 120;
 
 	// TODO 2: Add a collider to the player
+	player =  App->collision->AddCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER);
+
 
 	return true;
 }
@@ -101,7 +104,7 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 
 	// TODO 3: Update collider position to player position
-
+	player->SetPos(position.x, position.y);
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
@@ -109,3 +112,8 @@ update_status ModulePlayer::Update()
 }
 
 // TODO 4: Detect collision with a wall. If so, go back to intro screen.
+
+void OnCollision (){
+
+	 if (App->player->player->CheckCollision(App->scene_space->walls)) {
+}

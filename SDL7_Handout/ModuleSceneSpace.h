@@ -19,6 +19,7 @@ public:
 	
 	SDL_Texture* background = nullptr;
 	SDL_Texture* stars = nullptr;
+	Collider* walls;
 };
 
 #endif // __MODULESCENESPACE_H__
