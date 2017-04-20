@@ -26,6 +26,7 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 	}
 
 	SDL_Texture* tex = App->textures->Load(texture_path);
+	uint width, heigth;
 
 	if(tex == nullptr || strlen(characters) >= MAX_FONT_CHARS)
 	{
@@ -46,9 +47,15 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 
 	fonts[id].graphic = tex; // graphic: pointer to the texture
 	fonts[id].rows = rows; // rows: rows of characters in the texture
-	fonts[id].len = 0; // len: length of the table
-
+	fonts[id].len = strlen(characters); // len: length of the table
 	// TODO 1: Finish storing font data
+	App->textures->GetSize(tex, width, heigth);
+	fonts[id].row_chars = strlen(characters)/rows;
+	fonts[id].char_w = width/fonts[id].row_chars;
+	fonts[id].char_h = heigth;
+	strcpy(fonts[id].table, characters);
+
+	
 
 	// table: array of chars to have the list of characters
 	// row_chars: amount of chars per row of the texture
@@ -73,7 +80,7 @@ void ModuleFonts::UnLoad(int font_id)
 // Render text using a bitmap font
 void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 {
-	if(text == nullptr || font_id < 0 || font_id >= MAX_FONTS || fonts[font_id].graphic == nullptr)
+	if (text == nullptr || font_id < 0 || font_id >= MAX_FONTS || fonts[font_id].graphic == nullptr)
 	{
 		LOG("Unable to render text with bmp font id %d", font_id);
 		return;
@@ -85,9 +92,20 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 
 	rect.w = font->char_w;
 	rect.h = font->char_h;
+	rect.x = 0;
+	rect.y = 0;
 
-	for(uint i = 0; i < len; ++i)
+	for (uint i = 0; i < len; ++i)
 	{
-		// TODO 2: Find the character in the table and its position in the texture, then Blit
+		for (uint j = 0; j < font[font_id].len; ++i) {
+			if (text[i] == font[font_id].table[j]) {
+				rect.w = (1+i)*fonts[font_id].char_w;
+				rect.h = font[font_id].rows*fonts[font_id].char_h;		
+				rect.x = i*font[font_id].char_w;			
+				App->render->Blit(font[font_id].graphic, rect.x, rect.y, &rect);
+			}
+			// TODO 2: Find the character in the table and its position in the texture, then Blit
+		}
 	}
+	
 }

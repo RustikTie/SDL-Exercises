@@ -125,6 +125,7 @@ update_status ModulePlayer::Update()
 	sprintf_s(score_text, 10, "%7d", score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
+	App->fonts->BlitText(0, 0, 0, "197");
 
 	return UPDATE_CONTINUE;
 }
